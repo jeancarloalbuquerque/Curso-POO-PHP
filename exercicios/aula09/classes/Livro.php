@@ -19,19 +19,18 @@
         private $aberto;
         private $leitor;
 
-        // CONSTRUTOR
 
-        public function __construct($titulo, $autor, $totPaginas, $leitor){
+
+        public function __construct(string $titulo, string $autor, int $totPaginas, Pessoa $leitor){
             $this->setTitulo($titulo);
             $this->setAutor($autor);
             $this->setTotPaginas($totPaginas);
             $this->setLeitor($leitor);
-
-            $this->pagAtual = 0;
-            $this->aberto = false;
+            $this->setPagAtual(0);
+            $this->setAberto(false);
         }
 
-        // GETTERS
+
 
         public function getTitulo(){
             return $this->titulo;
@@ -44,7 +43,7 @@
         public function getTotPaginas(){
             return $this->totPaginas;
         }
-        
+
         public function getPagAtual(){
             return $this->pagAtual;
         }
@@ -57,45 +56,45 @@
             return $this->leitor;
         }
 
-        // SETTERS
+
 
         public function setTitulo($titulo){
-            $this->titulo = $titulo;
+                $this->titulo = $titulo;
         }
 
         public function setAutor($autor){
-            $this->autor = $autor;
+                $this->autor = $autor;
         }
 
         public function setTotPaginas($totPaginas){
-            $this->totPaginas = $totPaginas;
+                $this->totPaginas = $totPaginas;
         }
 
         public function setPagAtual($pagAtual){
-            $this->pagAtual = $pagAtual;
+                $this->pagAtual = $pagAtual;
         }
 
-        public function setAberto($aberto){
-            $this->aberto = $aberto;
+        public function setAberto(bool $aberto){
+                $this->aberto = $aberto;
         }
 
         public function setLeitor($leitor){
-            $this->leitor = $leitor;
+                $this->leitor = $leitor;
         }
 
-        // METODOS
 
-        public function detalhes() {
-            echo
-                "Livro <strong>". $this->getTitulo() .
-                "</strong> escrito por <strong>" . $this->getAutor() .
-                // "</strong> com " . $this->getTotPaginas() . " páginas.<br>".
-                "</strong><br>Está sendo lido por <strong>". $this->leitor->getNome() ."</strong>".
-                " (página " . $this->getPagAtual() . " de " . $this->getTotPaginas() . ")<hr>";
-                ;
+
+        public function detalhes(){
+            $tit = $this->getTitulo();
+            $aut = $this->getAutor();
+            $pag = $this->getPagAtual();
+            $pagTot = $this->getTotPaginas();
+            $lei = $this->getLeitor()->getNome();
+
+            echo "Livro <strong>$tit</strong> de <strong>$aut</strong><br>";
+            echo "Está sendo lido por <strong>$lei</strong> (página $pag de $pagTot)<hr>";
         }
 
-        // INTERFACE
 
         public function abrir(){
             $this->setAberto(true);
@@ -104,28 +103,26 @@
         public function fechar(){
             $this->setAberto(false);
         }
- 
-        public function folhear($pagAtual){
-            if($pagAtual >=0 && $pagAtual <= $this->getTotPaginas()){
-                $this->setPagAtual($pagAtual);
+
+        public function folhear($pagina){
+            if($pagina >= 0 && $pagina <= $this->getTotPaginas()){
+                $this->setPagAtual($pagina);
             }
         }
- 
+
         public function avancarPag(){
             if($this->getPagAtual() < $this->getTotPaginas()){
                 $this->setPagAtual($this->getPagAtual()+1);
             }
         }
- 
+
         public function voltarPag(){
-            if($this->getPagAtual() < $this->getTotPaginas()){
-                $this->setPagAtual($this->getPagAtual()+1);
+            if($this->getPagAtual() > 0){
+                $this->setPagAtual($this->getPagAtual()-1);
             }
         }
 
 
     }
-    
-
 
 ?>

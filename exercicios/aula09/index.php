@@ -25,36 +25,30 @@ Publicacao
 
 -->
 
+<?php
+    require_once './classes/Pessoa.php';
+    require_once './classes/Livro.php';
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php
-        require_once 'classes/Pessoa.php';
-        require_once 'classes/Livro.php';
+    $p = array();
+    $p[0] = new Pessoa("Jean", 24, "M");
+    $p[1] = new Pessoa("Rafael", 27, "M");
 
-        $p = array();
-        $p[0] = new Pessoa("Jean", 24, "M");
-        $p[1] = new Pessoa("Pedro", 22, "M");
-        $p[2] = new Pessoa("Maria", 31, "F");
+    $l = array();
+    $l[0] = new Livro("PHP Básico", "José da Silva", 345, $p[0]);
+    $l[1] = new Livro("Ortografia", "Aurelio", 584, $p[1]);
+    $l[2] = new Livro("Sapiens", "Yaval Harari", 464, $p[0]);
 
-        $l = array();
-        $l[0] = new Livro("PHP Básico", "José da Silva", 300, $p[0]);
-        $l[1] = new Livro("POO com PHP", "Maria de Souza", 500, $p[1]);
-        $l[2] = new Livro("PHP Avançado", "Ana Paula", 800, $p[2]);
+    $l[2]->folhear(64);
 
-        $l[0]->abrir();
-        $l[0]->folhear(65);
+    $l[0]->detalhes();
+    $l[1]->detalhes();
+    $l[2]->detalhes();
 
-        $l[0]->detalhes();
-    
-        // var_dump($p);
-        // var_dump($l);
-    ?>
-</body>
-</html>
+    var_dump($p);
+    echo '<hr>';
+
+    var_dump($l);
+    echo '<hr>';
+
+
+?>
