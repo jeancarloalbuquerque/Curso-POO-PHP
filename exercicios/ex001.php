@@ -1,4 +1,13 @@
 <?php
+
+    // COMERN
+    C - CONFIAVEL
+    O - OPORTUNO
+    M - MANUTENIVEL
+    E - EXTENSIVEL
+    R - REUTILIZAVEL
+    N - NATURAL 
+
     class ContaBanco {
         public $numConta;
         protected $tipo;
